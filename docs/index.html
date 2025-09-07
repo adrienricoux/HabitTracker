@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Habit Tracker</title>
+  <meta name="theme-color" content="#0f172a">
+  <link rel="stylesheet" href="./styles.css">
+  <script>
+    // Dynamically set manifest path for GitHub Pages (/repo/ base path)
+    (function() {
+      var base = location.pathname.split('/').slice(0, -1).join('/') + '/';
+      var link = document.createElement('link');
+      link.rel = 'manifest';
+      link.href = base + 'manifest.json';
+      document.head.appendChild(link);
+
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register(base + 'sw.js').catch(console.error);
+      }
+    })();
+  </script>
+</head>
+<body>
+  <header class="topbar">
+    <h1>Habit Tracker</h1>
+    <button id="installBtn" class="btn secondary" hidden>Install</button>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h2>Add habit</h2>
+      <form id="habitForm">
+        <input id="habitName" type="text" placeholder="e.g., Drink water" required>
+        <select id="habitFreq">
+          <option value="daily">Daily</option>
+          <option value="weekly">Weekly</option>
+        </select>
+        <button class="btn" type="submit">Add</button>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2>Your habits</h2>
+      <div id="habitList" class="list"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <small>Data is stored locally on your device.</small>
+  </footer>
+
+  <script src="./app.js"></script>
+</body>
+</html>
